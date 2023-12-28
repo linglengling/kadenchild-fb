@@ -1975,6 +1975,25 @@ body.single-anwp_club .content-area{
 }
 
 
+/* Class to display content on mobile */
+.mobile-only {
+  display: none !important;
+}
+
+ @media all and (max-width: 767px) {
+                .content-area {
+                    margin-top:1rem !important; 
+                }
+            }
+/* Styles to show content on mobile screens */
+@media only screen and (max-width: 767px) {
+  .mobile-only {
+    display: block!important;
+  }
+}
+
+
+
 footer#colophon h2.widget-title{
     color: #fff;
 }
