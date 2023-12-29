@@ -1992,7 +1992,18 @@ body.single-anwp_club .content-area{
   }
 }
 
-
+.wm-nav-tag a {
+    height: 25px;
+    padding: 0 5px;
+    color: #000;
+    font-size: 13px;
+    line-height: 26px;
+    position: relative;
+    background: #fff;
+    border-radius: 40px;
+    margin-right: 5px;
+    text-wrap: nowrap;
+}
 
 footer#colophon h2.widget-title{
     color: #fff;
