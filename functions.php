@@ -10,7 +10,7 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 
 function kadence_before_main_content_custom() 
 {
-     echo do_shortcode('[sc name="navigation-responsive"][/sc]');
+	echo do_shortcode('[sc name="navigation-responsive"][/sc]');
 
 }
 add_action( 'kadence_before_main_content', 'kadence_before_main_content_custom' );
@@ -152,7 +152,16 @@ add_action('wp_footer','wm_modal_func');
 add_filter( 'kadence_logo_url', 'custom_logo_url' );
 function custom_logo_url( $url ) {
 	$url = 'https://24hscore.com/';
-	return $url;
+	$prase = parse_url(site_url('/'));
+
+	if($prase['path'] == '/bong-da/'){
+		return $url.'vi/';
+	}elseif ($prase['path'] == '/futebol/') {
+		return $url.'pt-br/';
+	}else{
+		return $url;
+	}
+	
 }
 
 
@@ -300,3 +309,152 @@ class WM_Fields_Plugin {
 
 		}
 		new WM_Fields_Plugin();
+
+
+
+/*==================================================
+>>>  SC SHOW POST     
+==================================================*/
+function wm_show__post($args, $content) {
+
+	$location = (isset($args['location']) && !empty($args['location'])) ? $args['location'] : 'top';
+	ob_start(); ?>
+
+	<!-- START ID wm-post-shortcode -->
+	<div id="wm-post-shortcode">
+		<?php 
+		$recent_args = array(
+			"post_type" => "post",
+			"posts_per_page" => 12,	
+			"post_status" => "publish",		
+			"orderby"        => "date",
+			"order"          => "DESC"
+		);      
+
+		$recent = get_posts($recent_args);
+
+		foreach ($recent as $key => $value) { ?>
+
+			<article class="item">
+				<div class="item-thumbnail">
+					<a href="<?php echo esc_url(get_permalink( $value)) ?>" title="<?php echo get_the_title( $value ) ?>">
+						<img src="<?php echo get_the_post_thumbnail_url( $value, $size = 'full' ) ?>">
+					</a>
+				</div><!-- End Class item-thumbnail -->
+
+				<div class="item-meta">					
+					<span class="cat"><?php echo get_the_category_list( ' ,', '', $value->ID ); ?></span>
+					<span class="sape"> | </span>
+					<span class="date"><?php echo get_day_name(strtotime($value->post_date)) ?></span>
+				</div><!-- End Class item-meta -->	
+
+				<div class="item-title">
+					<a href="<?php echo esc_url(get_permalink( $value)) ?>" title="<?php echo get_the_title( $value ) ?>">
+						<?php echo get_the_title( $value ) ?>
+					</a>
+				</div><!-- End Class item-title -->
+
+			</article><!-- End Class item -->	
+			<?php
+		}
+		?>
+	</div>
+	<!-- END ID wm-post-shortcode -->	
+
+	<?php
+	$list_post = ob_get_contents();
+	ob_end_clean();
+
+	return $list_post;
+}
+add_shortcode( 'sc_wm_posts', 'wm_show__post' );
+
+function get_day_name($timestamp) {
+
+	$date = date('d/m/Y', $timestamp);
+
+	if($date == date('d/m/Y')) {
+		$date = 'Today '.date('H:i A',$timestamp);
+	} 
+	// else if($date == date('d/m/Y',now() - (24 * 60 * 60))) {
+	// 	$date = 'Yesterday '.date('H:i A',$timestamp);
+	// }
+	return $date;
+}
+
+
+add_filter('kadence_before_main_content','wm_add_selectbox_cat');
+function wm_add_selectbox_cat(){
+
+	if(!is_category() && !is_front_page()){
+		return;
+	}
+
+	if(is_front_page()){
+		$queried = get_term_by('slug', 'football', $taxonomy = 'category');
+	}else{
+		$queried = get_queried_object();
+	}
+	
+	$parent_cat_arg = array('hide_empty' => false, 'parent' => 0 );
+	$parent_cat = get_terms('category',$parent_cat_arg);
+	?>
+	<div class="wm-content-header">
+		<h1><?php echo $queried->name; ?></h1>
+		<div class="wm-dropdown">
+			<button type="button" class="dropdown-button fl_c_btn">
+				<span class="text">
+					<?php echo $queried->name; ?>
+				</span>
+				<svg class="vector" width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M0 0L5 5L10 0H0Z" fill="#141414"></path>
+				</svg>
+			</button>
+			<div class="dropdown-content">
+				<?php 
+				foreach ($parent_cat as $catVal) {
+
+					if($catVal->term_id == $queried->term_id){
+						echo '<span class="dropdown-item fl_c">
+						<span class="item-value__active">
+						'.$catVal->name.'
+						</span>
+						</span>';
+					}else{
+						echo '<span class="dropdown-item fl_c">
+						<span class="item-content">
+						<a href="'.get_term_link($catVal).'" class="item-value">'.$catVal->name.' </a>
+						</span>
+						</span>';
+					}				
+
+
+					$child_arg = array( 'hide_empty' => false, 'parent' => $catVal->term_id );
+					$child_cat = get_terms( 'category', $child_arg );
+
+					if ($child_cat) {
+						echo '<ul>';
+						foreach( $child_cat as $child_term ) {
+							echo '<li>'.$child_term->name . '</li>';
+						}
+						echo '</ul>';
+					}
+
+				}
+				?>
+
+			</div>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
+		(function($){
+			$(document).ready(function(){
+				$(document).on("click",".wm-dropdown",function(e){
+					$(this).toggleClass("dropdown-active");
+				});
+			});
+		})(jQuery);
+	</script>
+	<?php
+}
