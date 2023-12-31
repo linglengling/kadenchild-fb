@@ -382,8 +382,15 @@ function get_day_name($timestamp) {
 	return $date;
 }
 
+/*==================================================
+>>>  SC SELECT SPORT CATEGORY     
+==================================================*/
+add_filter('kadence_before_main_content','wm_add_before_main_content');
+function wm_add_before_main_content(){
+	echo do_shortcode('[sc name="selectbox_sport"][/sc]');
+}
 
-add_filter('kadence_before_main_content','wm_add_selectbox_cat');
+add_shortcode( 'sc_wm_selectbox_cat', 'wm_add_selectbox_cat' );
 function wm_add_selectbox_cat(){
 
 	if(!is_category() && !is_front_page()){
@@ -391,7 +398,8 @@ function wm_add_selectbox_cat(){
 	}
 
 	if(is_front_page()){
-		$queried = get_term_by('slug', 'football', $taxonomy = 'category');
+		$queried = new stdClass();
+		$queried->name = 'All Sports';		
 	}else{
 		$queried = get_queried_object();
 	}
@@ -404,7 +412,8 @@ function wm_add_selectbox_cat(){
 		<div class="wm-dropdown">
 			<button type="button" class="dropdown-button fl_c_btn">
 				<span class="text">
-					<?php echo $queried->name; ?>
+					<?php //echo $queried->name; ?>
+					<?php echo sprintf(__('%s', 'kadence' ), $queried->name); ?>
 				</span>
 				<svg class="vector" width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M0 0L5 5L10 0H0Z" fill="#141414"></path>
