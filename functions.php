@@ -400,11 +400,12 @@ function wm_add_selectbox_cat(){
 	if(is_front_page()){
 		$queried = new stdClass();
 		$queried->name = 'All Sports';		
+		$queried->term_id = 0;	
 	}else{
 		$queried = get_queried_object();
 	}
 	
-	$parent_cat_arg = array('hide_empty' => false, 'parent' => 0 );
+	$parent_cat_arg = array('hide_empty' => false, 'parent' => 0 ,'exclude'=>1);
 	$parent_cat = get_terms('category',$parent_cat_arg);
 	?>
 	<div class="wm-content-header">
