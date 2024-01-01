@@ -154,9 +154,9 @@ function custom_logo_url( $url ) {
 	$url = 'https://24hscore.com/';
 	$prase = parse_url(site_url('/'));
 
-	if($prase['path'] == '/bong-da/'){
+	if($prase['path'] == '/bong-da/' || $prase['path'] == '/tin-tuc/'){
 		return $url.'vi/';
-	}elseif ($prase['path'] == '/futebol/') {
+	}elseif ($prase['path'] == '/futebol/' || $prase['path'] == '/noticias/') {
 		return $url.'pt-br/';
 	}else{
 		return $url;
