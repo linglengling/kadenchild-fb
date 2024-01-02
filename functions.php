@@ -404,17 +404,19 @@ function wm_add_selectbox_cat(){
 	}
 
 	if(is_front_page()){
-		$queried = new stdClass();
+		// $queried = new stdClass();
 		
-		$prase = parse_url(site_url('/'));
+		// $prase = parse_url(site_url('/'));
 
-		if($prase['path'] == '/tin-tuc/'){
-			$queried->name = 'Tất cả các môn thể thao';
-		}elseif ($prase['path'] == '/noticias/') {
-			$queried->name = 'Todos os esportes';
-		}else{
-			$queried->name = 'All Sports';
-		}
+		// if($prase['path'] == '/tin-tuc/'){
+		// 	$queried->name = 'Tất cả các môn thể thao';
+		// }elseif ($prase['path'] == '/noticias/') {
+		// 	$queried->name = 'Todos os esportes';
+		// }else{
+		// 	$queried->name = 'All Sports';
+		// }
+
+		$queried->name = 'All Sports';
 
 		$queried->term_id = 0;	
 	}else{
