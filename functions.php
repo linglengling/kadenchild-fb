@@ -404,7 +404,7 @@ function wm_add_selectbox_cat(){
 	}
 
 	if(is_front_page()){
-		// $queried = new stdClass();
+		$queried = new stdClass();
 		
 		// $prase = parse_url(site_url('/'));
 
