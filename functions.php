@@ -3,9 +3,15 @@ function theme_styles()
 {
 	wp_register_style('custom-styles', get_stylesheet_directory_uri() . '/style.css' ,array(),time());
 	wp_enqueue_style('custom-styles');
-
 }
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
+
+
+// function kadence_child_setup() {
+// 	$path = get_stylesheet_directory().'/languages';
+// 	load_child_theme_textdomain( 'kadence-child', $path );
+// }
+// add_action( 'after_setup_theme', 'kadence_child_setup' );
 
 
 function kadence_before_main_content_custom() 
@@ -399,7 +405,17 @@ function wm_add_selectbox_cat(){
 
 	if(is_front_page()){
 		$queried = new stdClass();
-		$queried->name = 'All Sports';		
+		
+		$prase = parse_url(site_url('/'));
+
+		if($prase['path'] == '/tin-tuc/'){
+			$queried->name = 'Tất cả các môn thể thao';
+		}elseif ($prase['path'] == '/noticias/') {
+			$queried->name = 'Todos os esportes';
+		}else{
+			$queried->name = 'All Sports';
+		}
+
 		$queried->term_id = 0;	
 	}else{
 		$queried = get_queried_object();
