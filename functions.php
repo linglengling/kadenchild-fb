@@ -487,13 +487,13 @@ function wm_add_selectbox_cat(){
 	<?php
 }
 // Function to get a cached object or retrieve it from the database if not cached
-function get_my_custom_cache_data( $post_id , $key = "_anwpfl_league_odds" ) {
+function get_my_custom_cache_data( $post_id , $key = "_anwpfl_league_odds" , $time = 20 ) {
     // Try to get the cached object
     $cached_object = get_transient( 'my_custom_data_' . $key. $post_id );
 // echo "cache ddd";
     // If the object was found in the cache, return it
     if ( $cached_object !== false ) {
-     //   echo "cache roi";
+        echo "cache roi";
         return $cached_object;
     }
     
@@ -502,7 +502,7 @@ function get_my_custom_cache_data( $post_id , $key = "_anwpfl_league_odds" ) {
     
     // Store the object in the cache for future use
     // Set the transient to expire after 12 hours (43200 seconds)
-    set_transient( 'my_custom_data_'. $key. $post_id, $my_custom_data, 43200 );
+    set_transient( 'my_custom_data_'. $key. $post_id, $my_custom_data, $time );
 
     // Return the freshly retrieved object
     return $my_custom_data;
