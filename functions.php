@@ -493,7 +493,7 @@ function get_my_custom_cache_data( $post_id , $key = "_anwpfl_league_odds" , $ti
 // echo "cache ddd";
     // If the object was found in the cache, return it
     if ( $cached_object !== false ) {
-        echo "cache roi";
+//        echo "cache roi";
         return $cached_object;
     }
     
