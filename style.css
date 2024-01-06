@@ -2263,3 +2263,14 @@ section.entry-hero{
 .content-area{
     margin-top: 2rem !important;
 }
+
+
+#kadence-breadcrumbs{
+    display: none;
+}
+
+.anwp-fl-calendar-slider__games .match-list__item span.finished{
+    min-width: 200px;
+    text-align: right;
+    font-weight: 700;
+}
