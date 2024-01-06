@@ -2274,3 +2274,35 @@ section.entry-hero{
     text-align: right;
     font-weight: 700;
 }
+
+.site-top-footer-wrap{
+    padding: 0 !important;
+}
+.site-footer .footer-widget-area-inner section.widget{}
+
+.site-footer .footer-widget-area-inner section.widget h2{
+    text-align: left;
+    font-size: 14px;
+}
+.site-footer .footer-widget-area-inner section.widget .match-list{
+    padding: 0!important;
+    text-align: left;
+}
+.site-footer .footer-widget-area-inner section.widget .match-list .match-plain{
+    padding-right: 10px;
+/*    padding-left: 10px;*/
+border-right: 1px solid #fff;
+}
+.site-footer .footer-widget-area-inner section.widget .match-list .match-plain:first-child{
+    padding-left: 0;
+}
+.site-footer .footer-widget-area-inner section.widget .match-list .match-plain:last-child{
+    border-right: none;
+    padding-right: 0;
+}
+.site-footer .footer-widget-area-inner section.widget .match-list a{
+    font-size: 13px;
+    color: #eaf2ea;
+    display: block;
+    line-height: 1;
+}
