@@ -2224,16 +2224,17 @@ section.entry-hero{
     display: flex !important;
 }
 .wm-competition a{
-    padding: 0 15px;
+    padding: 0 10px;
     color: #000;
-    font-size: 14px;
-    line-height: 26px;
+    font-size: 12px;
+    line-height: 20px;
     position: relative;
     background: #fff;
     border-radius: 40px;
     margin-right: 10px;
     display: block;
     text-decoration: none;
+    height: 20px;
 }
 .wm-competition a.slick-active,
 .wm-competition a:hover {
@@ -2305,4 +2306,12 @@ border-right: 1px solid #fff;
     color: #eaf2ea;
     display: block;
     line-height: 1;
+}
+
+
+#breadcrumbs li:last-child{
+    display: none;
+}
+#breadcrumbs li.separator:not(.item-cat):last-of-type{
+    background: red;
 }
