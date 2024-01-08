@@ -330,7 +330,7 @@ function wm_show__post($args, $content) {
 		<?php 
 		$orderby       = (isset($args['orderby']) && !empty($args['orderby'])) ? $args['orderby'] : 'date';
 		$order         = (isset($args['order']) && !empty($args['order'])) ? $args['order'] : 'DESC';
-		$show_articles = (isset($args['show_articles']) && !empty($args['show_articles'])) ? $args['show_articles'] : '6';
+		$show_articles = (isset($args['show_articles']) && !empty($args['show_articles'])) ? $args['show_articles'] : '12';
 
 
 		$number   = $show_articles;
