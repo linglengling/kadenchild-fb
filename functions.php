@@ -534,9 +534,9 @@ function wm_add_selectbox_cat(){
 					$child_cat = get_terms( 'category', $child_arg );
 
 					if ($child_cat) {
-						echo '<ul>';
+						echo '<ul style="margin-bottom:0;">';
 						foreach( $child_cat as $child_term ) {
-							echo '<li>'.$child_term->name . '</li>';
+							echo '<li><a href="'.get_term_link($child_term).'" class="item-value">'.$child_term->name.' </a></li>';
 						}
 						echo '</ul>';
 					}
