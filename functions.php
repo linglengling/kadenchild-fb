@@ -321,25 +321,42 @@ class WM_Fields_Plugin {
 /*==================================================
 >>>  SC SHOW POST     
 ==================================================*/
-function wm_show__post($args, $content) {
+function wm_show__post($args, $content) {	
 
-	$location = (isset($args['location']) && !empty($args['location'])) ? $args['location'] : 'top';
 	ob_start(); ?>
 
 	<!-- START ID wm-post-shortcode -->
 	<div id="wm-post-shortcode">
 		<?php 
-		$recent_args = array(
-			"post_type" => "post",
-			"posts_per_page" => 12,	
-			"post_status" => "publish",		
-			"orderby"        => "date",
-			"order"          => "DESC"
-		);      
+		$orderby       = (isset($args['orderby']) && !empty($args['orderby'])) ? $args['orderby'] : 'date';
+		$order         = (isset($args['order']) && !empty($args['order'])) ? $args['order'] : 'DESC';
+		$show_articles = (isset($args['show_articles']) && !empty($args['show_articles'])) ? $args['show_articles'] : '6';
 
-		$recent = get_posts($recent_args);
 
-		foreach ($recent as $key => $value) { ?>
+		$number   = $show_articles;
+		$paged    = (get_query_var('page')) ? get_query_var('page') : 1;
+		
+		$offset   = ($paged - 1) * $number;
+
+		$p_args                     = array();
+		$p_args['post_type']        = 'post';
+		$p_args['orderby']          = $orderby;
+		$p_args['order']            = $order;    
+		$p_args['posts_per_page']   = -1;
+		$p_args['suppress_filters'] = 0;    
+
+		$nwm_article = get_posts($p_args);
+
+		$p_args['posts_per_page']   = $show_articles;
+		$p_args['offset']           = $offset;
+
+		$nwm_article_offset = get_posts($p_args); 
+
+		$total_users = count($nwm_article_offset);
+		$total_query = count($nwm_article);
+		$total_pages = intval($total_query / $number);   		
+
+		foreach ($nwm_article_offset as $key => $value) { ?>
 
 			<article class="item">
 				<div class="item-thumbnail">
@@ -365,7 +382,63 @@ function wm_show__post($args, $content) {
 		}
 		?>
 	</div>
-	<!-- END ID wm-post-shortcode -->	
+	<!-- END ID wm-post-shortcode -->
+
+	<?php
+	if ($nwm_article > $total_query) {
+		echo '<div id="pagination" class="clearfix">';
+                    // echo '<span class="pages">Pages:</span>';
+		$current_page = max(1, get_query_var('page'));
+		echo paginate_links(array(
+			'base' => get_pagenum_link(1) . '%_%',
+			'format' => 'page/%#%/',
+			'current' => $current_page,
+			'total' => $total_pages,
+			'prev_next'    => false,
+			'type'         => 'list',
+		));
+		echo '</div>';
+	}
+	?>
+
+	<style>
+		#pagination{
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			margin: 20px 0;
+		}
+		#pagination ul{
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+		}
+		#pagination ul li{
+			margin-right: 10px;
+		}
+		#pagination ul li a,
+		#pagination ul li span{
+			display: block;
+			width: 40px;
+			height: 40x;
+			line-height: 40px;
+			border: 1px solid transparent;
+			border-radius: 8px;
+			box-shadow: 0 1px 4px rgba(0,0,0,.25);
+			text-align: center;
+			color: #000;
+			text-decoration: none;
+		}
+		#pagination ul li a:hover,
+		#pagination ul li span.current{
+			box-shadow: 0 10px 13px -7px rgba(0,0,0,.3);
+			border: 1px solid hsla(0,0%,8%,.48);
+			background-color: #141414;
+			color: #fff;
+		}
+	</style>
+
 
 	<?php
 	$list_post = ob_get_contents();
@@ -540,8 +613,8 @@ function wm_add_slider_nav_func(){
 	?>
 	<div id="wm-top-slider" class="site-container">
 		<div class="wm-competition slick-slider">
-			<a href="https://24hscore.com/football"  class="pin-new"><span >Prediction</span></a>      
-			<a href="https://24hscore.com/football/competition/bundesliga-2023-2024/">Bundesliga</a>                        
+			<a href="https://24hscore.com/football"><span >Prediction</span></a>      
+			<a href="https://24hscore.com/football/competition/bundesliga-2023-2024/">Bundesliga</a>                       
 			<a href="https://24hscore.com/football/competition/ligue-1-2023-2024/">Ligue 1</a>
 			<a href="https://24hscore.com/football/competition/premier-league-2023-2024/">Premier League</a>
 			<a href="https://24hscore.com/football/competition/serie-a-2023-2024/">Serie A</a>
@@ -830,4 +903,6 @@ if(!function_exists('wgl_breadcrumbs')){
 
 
 }
+
+
 
