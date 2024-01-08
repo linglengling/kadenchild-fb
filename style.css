@@ -704,6 +704,17 @@ body.single-anwp_club .content-area{
         position : relative ;
         top: auto;
         right: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    .make-a-bet a{
+        max-width: 90px;
+        text-align: center;
+    }
+    .make-a-bet .read-tips{
+        margin-top: 0;
     }
 }
 
@@ -2314,4 +2325,42 @@ border-right: 1px solid #fff;
 }
 #breadcrumbs li.separator:not(.item-cat):last-of-type{
     background: red;
+}
+
+
+/*-----------------------*\
+    RESPONSIVE
+\*-----------------------*/
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+
+    .anwp-fl-calendar-slider__games .match-list__item span.finished{
+        text-align: center;
+        width: 100%;
+        display: block;
+    }
+    .wm-odd{
+        justify-content: center;
+    }
+}
+
+/* Landscape phones and smaller */
+@media (max-width: 480px) {
+
 }
