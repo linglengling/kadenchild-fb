@@ -906,3 +906,95 @@ if(!function_exists('wgl_breadcrumbs')){
 
 
 
+
+/*==================================================
+>>>  ADD METABOX TO MATCH POST TYPE  
+==================================================*/
+add_action( 'add_meta_boxes', 'nwm_meta_box_add' );
+function nwm_meta_box_add(){
+	add_meta_box( 'nwm-meta-box-id', 'Additional Text Content', 'nwm_meta_box_func', 'anwp_match', 'normal', 'high' );
+}
+function nwm_meta_box_func( $post ){
+	$values = get_post_custom( $post->ID );
+	$text_content = $post->post_content;
+	$text_excerpt = $post->post_excerpt;
+
+	wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' );	
+	?>
+	<p>		<label for="my_meta_box_text">Content</label>
+		<?php wp_editor( htmlspecialchars($text_content), 'nwm_match_content', array('textarea_name'=>'wm_input_match_content','textarea_rows' => 10,) );
+		?>
+	</p>
+	<p>
+		<label for="my_meta_box_text">Excerpt</label>
+		<?php wp_editor( htmlspecialchars($text_excerpt), 'nwm_match_excerpt', $settings = array('textarea_name'=>'nwm_input_match_excerpt','textarea_rows' => 10,) );
+		?>
+	</p>
+
+	<?php	
+}
+
+
+add_action( 'save_post', 'nwm_meta_box_save' );
+function nwm_meta_box_save( $post_id ){	
+	// Check post type
+	if ( 'anwp_match' !== $_POST['post_type'] ) {
+		return $post_id;
+	}
+
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return $post_id;
+	}
+	// Check the user's permissions.
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return $post_id;
+	}
+
+	// if our nonce isn't there, or we can't verify it, bail
+	if( !isset( $_POST['meta_box_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_nonce'], 'my_meta_box_nonce' ) ) return;
+
+
+
+	// now we can actually save the data
+	$allowed = array( 
+		'a' => array( // on allow a tags
+			'href' => array() // and those anchords can only have href attribute
+		)
+	);
+
+	remove_action( 'save_post', 'nwm_meta_box_save' );
+
+	$mydata = array(
+		'ID' => $post_id,
+		'post_content' => $_POST['nwm_input_match_content'],
+		'post_excerpt' => $_POST['nwm_input_match_excerpt']
+	);
+
+	wp_update_post( $mydata );
+
+	add_action( 'save_post', 'nwm_meta_box_save' );
+
+	// This is purely my personal preference for saving checkboxes
+	// $chk = ( isset( $_POST['my_meta_box_check'] ) && $_POST['my_meta_box_check'] ) ? 'on' : 'off';
+	// update_post_meta( $post_id, 'my_meta_box_check', $chk );
+
+	return $post_id;
+}
+
+function nwm_match_content_func($attr,$content){	
+	if(!is_single()){
+		return false;
+	}
+	global $post;
+	return $post->post_content;
+}
+add_shortcode("nwm_match_content","nwm_match_content_func");
+
+function nwm_match_excerpt_func($attr,$content){	
+	if(!is_single()){
+		return false;
+	}
+	global $post;
+	return $post->post_excerpt;
+}
+add_shortcode("nwm_match_excerpt","nwm_match_excerpt_func");
