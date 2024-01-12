@@ -966,7 +966,7 @@ function nwm_meta_box_save( $post_id ){
 
 	$mydata = array(
 		'ID' => $post_id,
-		'post_content' => $_POST['nwm_input_match_content'],
+		'post_content' => $_POST['wm_input_match_content'],
 		'post_excerpt' => $_POST['nwm_input_match_excerpt']
 	);
 
