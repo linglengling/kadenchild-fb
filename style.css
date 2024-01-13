@@ -2330,6 +2330,12 @@ border-right: 1px solid #fff;
     background: red;
 }
 
+.anwp-fl-builder-block.nwm_prediction > .anwp-fl-block-header,
+.anwp-fl-builder-block.nwm_prediction > .anwp-block-content .anwp-section > div:nth-child(0),
+.anwp-fl-builder-block.nwm_prediction > .anwp-block-content .anwp-section > div:nth-child(1){
+    display: none;
+}
+
 
 /*-----------------------*\
     RESPONSIVE
