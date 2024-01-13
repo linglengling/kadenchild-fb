@@ -986,7 +986,7 @@ function nwm_match_content_func($attr,$content){
 		return false;
 	}
 	global $post;
-	return $post->post_content;
+	return wpautop($post->post_content);
 }
 add_shortcode("nwm_match_content","nwm_match_content_func");
 
@@ -995,6 +995,6 @@ function nwm_match_excerpt_func($attr,$content){
 		return false;
 	}
 	global $post;
-	return $post->post_excerpt;
+	return wpautop($post->post_excerpt);
 }
 add_shortcode("nwm_match_excerpt","nwm_match_excerpt_func");
