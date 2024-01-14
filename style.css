@@ -2245,7 +2245,7 @@ section.entry-hero{
     position: relative;
     background: #fff;
     border-radius: 40px;
-    margin-right: 10px;
+    margin-right: 0;
     display: block;
     text-decoration: none;
     height: 20px;
@@ -2373,4 +2373,44 @@ border-right: 1px solid #fff;
 /* Landscape phones and smaller */
 @media (max-width: 480px) {
 
+}
+
+
+.site-header-row.site-header-row-center-column{
+    grid-template-columns: auto auto 35px !important;
+}
+.site-header-item .kadence-menu-svg{
+    fill: #fff;
+}
+.site-header-item .mobile-html,
+.site-header-item .mobile-html .mobile-html-inner{
+    height: 100%;
+}
+
+.content-menu-right{
+    display: block;
+    margin-left: auto;
+    display: flex;
+    margin-right: -5px;
+    height: 100%;
+}
+.content-icon {
+    background-color: rgba(0,0,0,.08);
+}
+.content-icon.content-icon-tlk {
+  background: #005CFF;
+}
+.content-icon a{
+    height: 100%;
+    display: flex;
+    padding: 8px 7px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 70px;
+    color: #f2f2f2;
+    font-family: Arial;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
 }
