@@ -2414,3 +2414,13 @@ border-right: 1px solid #fff;
     font-style: normal;
     font-weight: 700;
 }
+
+.nwm-hot{
+    color: #ce2b37;
+    text-transform: uppercase;
+    font-weight: 700;
+    position: relative;
+    /* top: 1px; */
+    font-size: 12px;
+    line-height: 20px;
+}
