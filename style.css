@@ -2431,3 +2431,10 @@ border-right: 1px solid #fff;
     font-size: 12px;
     line-height: 20px;
 }
+.nwm-hot.slick-active{
+    color: #fff;
+    background: #ed533a;
+    padding: 0 5px;
+    height: 20px;
+    margin-right: 2px;
+}
