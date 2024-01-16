@@ -151,9 +151,12 @@ header.site-header{
 }
 
 .entry-content-wrap{
+    padding: 0 ;
+}
+body.home .entry-content-wrap,
+article.anwp_match .entry-content-wrap{
     padding: 0 !important;
 }
-
 
 footer.site-footer{
     background: #000;
@@ -723,7 +726,9 @@ body.single-anwp_club .content-area{
 
 /* Landscape phones and smaller */
 @media (max-width: 480px) {
-
+    .site-branding a.brand img{
+        max-width: 150px !important;
+    }
 }
 
 
@@ -2048,8 +2053,10 @@ footer#colophon h2.widget-title{
     grid-row-start: 1;
     grid-row-end: 3;
 }
-#wm-post-shortcode article.item{
-
+#wm-post-shortcode article.item .item-title,
+#wm-post-shortcode article.item .item-meta,
+#archive-container article .entry-content-wrap{
+    padding: 0 10px;
 }
 #wm-post-shortcode article.item .item-thumbnail{
     border-radius: 8px;
