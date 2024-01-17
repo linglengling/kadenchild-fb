@@ -799,7 +799,7 @@ article.anwp_club .entry-content-wrap{
 
 @media screen and (max-width: 375px){
     .site-branding a.brand img{
-        max-width: 120px !important;
+        max-width: 100px !important;
     }
 }
 
