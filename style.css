@@ -153,10 +153,7 @@ header.site-header{
 .entry-content-wrap{
     padding: 0 ;
 }
-body.home .entry-content-wrap,
-article.anwp_match .entry-content-wrap{
-    padding: 0 !important;
-}
+
 
 footer.site-footer{
     background: #000;
@@ -686,22 +683,12 @@ body.single-anwp_club .content-area{
 /*-----------------------*\
     RESPONSIVE
 \*-----------------------*/
-
-/* Large desktops and laptops */
-@media (min-width: 1200px) {
-
+body.home .entry-content-wrap,
+article.anwp_match .entry-content-wrap,
+article.anwp_competition .entry-content-wrap,
+article.anwp_club .entry-content-wrap{
+    padding: 0 !important;
 }
-
-/* Portrait tablets and medium desktops */
-@media (min-width: 992px) and (max-width: 1199px) {
-
-}
-
-/* Portrait tablets and small desktops */
-@media (min-width: 768px) and (max-width: 991px) {
-
-}
-
 /* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
     .make-a-bet{
@@ -722,12 +709,97 @@ body.single-anwp_club .content-area{
     .make-a-bet .read-tips{
         margin-top: 0;
     }
+
+    body.single-anwp_match .primary-sidebar,
+    body.single-anwp_club .primary-sidebar,
+    body.single-anwp_competition .primary-sidebar,
+    body.home.anwpfl-ready .primary-sidebar,
+    body.single-anwp_club main#main{
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+    body.home.anwpfl-ready article.entry.single-entry,
+    body.single-anwp_match article.entry.single-entry,
+    body.single-anwp_club article.entry.single-entry,
+    body.single-anwp_competition article.entry.single-entry{
+        margin: 0 -0.3rem;
+    }
+    body.single-anwp_match .primary-sidebar .side-bookies,
+    body.single-anwp_club .primary-sidebar .side-bookies,
+    body.home.anwpfl-ready .primary-sidebar .side-bookies,
+    body.single-anwp_competition .primary-sidebar .side-bookies{
+        padding: 0;
+    }
+    body.single-anwp_competition .content-area, 
+    body.single-anwp_club .content-area,
+    body.single-anwp_match .content-area{
+        margin-top: 1rem !important;
+    }
+    article.anwp_club .entry-content-wrap{
+        padding: 0 15px !important;
+    }
+
+
+
+
+    .anwp-fl-game .match-slim__inner-wrapper{
+        flex-direction: column;
+    }
+    .anwp-fl-game .match-slim__inner-wrapper .match-slim__main-meta{
+        border: none;
+        padding: 0 !important;
+        margin: 0 0 5px 0 !important;
+    }
+    .anwp-fl-game .match-slim__inner-wrapper .match-slim__main-meta .match-slim__date-wrapper{
+        display: flex !important;
+        width: 100%;
+        text-align: center;
+        flex-direction: row !important;
+        align-content: center;
+        align-items: center !important;
+    }
+    .anwp-fl-game .match-slim__inner-wrapper .match-slim__main-meta .match-slim__date-wrapper .match-slim__time-separator{
+        display: block !important;
+    }
+
+    .match-list.match-list--shortcode .anwp-fl-game .match-slim__inner-wrapper .match-slim__main-meta{
+        align-self: center;
+    }
+    .match-list.match-list--shortcode .anwp-fl-game .match-slim__inner-wrapper .match-slim__main-meta .match-slim__date-wrapper{
+        width: initial;
+    }
 }
 
 /* Landscape phones and smaller */
 @media (max-width: 480px) {
     .site-branding a.brand img{
         max-width: 150px !important;
+    }
+    #mobile-header .site-container{
+        padding: 0 10px;
+    }
+    body.home.anwpfl-ready article.entry.single-entry, 
+    body.single-anwp_match article.entry.single-entry, 
+    body.single-anwp_club article.entry.single-entry, 
+    body.single-anwp_competition article.entry.single-entry{
+        margin: 0 -0.7rem;
+    }
+    body.single-anwp_match .primary-sidebar, 
+    body.single-anwp_club .primary-sidebar, 
+    body.single-anwp_competition .primary-sidebar, 
+    body.home.anwpfl-ready .primary-sidebar, 
+    body.single-anwp_club main#main{
+        margin-left: -1.4rem;
+        margin-right: -1.4rem;
+    }
+    article.anwp_club .entry-content-wrap{
+        padding: 0 25px !important;
+    }
+}
+
+@media screen and (max-width: 375px){
+    .site-branding a.brand img{
+        max-width: 120px !important;
     }
 }
 
