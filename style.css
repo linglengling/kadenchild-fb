@@ -2365,10 +2365,10 @@ section.entry-hero{
     display: none;
 }
 
-.anwp-fl-calendar-slider__games .match-list__item span.finished{
-    min-width: 200px;
+.anwp-fl-calendar-slider__games .match-list__item span.finished{    
     text-align: right;
     font-weight: 700;
+    font-size: 12px;
 }
 
 .site-top-footer-wrap{
