@@ -104,8 +104,8 @@ header.site-header{
 .match-list.match-list--shortcode{
     border:none;
     background: #fff;
-    margin-bottom: 10px;
-    padding: 12px !important;
+    margin-bottom: 8px;
+    padding: 0 !important;
 }
 .anwp-fl-calendar-slider__games .match-list__item .match-slim__team-home-title,
 .anwp-fl-calendar-slider__games .match-list__item .match-slim__team-away-title{
@@ -117,9 +117,9 @@ header.site-header{
 .anwp-fl-calendar-slider__games .match-list__item .match-slim__scores-wrapper span{
     background: #000;
     color: #fff;
-    width: 40px;
-    height: 40px;
-    line-height: 35px;
+        width: 30px;
+    height: 30px;
+    line-height: 23px;
     display: block;
 }
 
@@ -636,7 +636,9 @@ body.single-anwp_club .content-area{
     color: #fff;
     display: block;
     text-decoration: none;
-    padding: 5px 20px;
+    padding: 4px 0;
+    width: 100%;
+    text-align: center;
     border-radius: 5px;
     -webkit-transition: all .3s ease 0s;
     -moz-transition: all .3s ease 0s;
@@ -2509,4 +2511,24 @@ border-right: 1px solid #fff;
     padding: 0 5px;
     height: 20px;
     margin-right: 2px;
+}
+
+
+/*==================================================
+>>>       CALENDAR GAMES     
+==================================================*/
+.anwp-fl-calendar-slider__games .anwp-fl-game .match-slim__inner-wrapper{
+    display: grid !important;
+    grid-template-columns: 10% 65% 15% 10%;
+    align-items: center;
+}
+.anwp-fl-calendar-slider__games .anwp-fl-game .match-slim__inner-wrapper .match-slim__team-home-title,
+.anwp-fl-calendar-slider__games .anwp-fl-game .match-slim__inner-wrapper .match-slim__team-away-title{
+    text-transform: capitalize;
+    font-size: 13px;
+}
+@media (max-width: 767px) {
+    .anwp-fl-calendar-slider__games .anwp-fl-game .match-slim__inner-wrapper{
+        grid-template-columns:100%;
+    }
 }
