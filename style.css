@@ -2517,7 +2517,9 @@ border-right: 1px solid #fff;
 /*==================================================
 >>>       CALENDAR GAMES     
 ==================================================*/
-.anwp-fl-calendar-slider__games .anwp-fl-game .match-slim__inner-wrapper{
+.anwp-fl-calendar-slider__games .anwp-fl-game .match-slim__inner-wrapper,
+.match-list--shortcode .anwp-fl-game .match-slim__inner-wrapper,
+.competition__group-wrapper .anwp-fl-game .match-slim__inner-wrapper{
     display: grid !important;
     grid-template-columns: 10% 65% 15% 10%;
     align-items: center;

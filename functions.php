@@ -998,3 +998,22 @@ function nwm_match_excerpt_func($attr,$content){
 	return wpautop($post->post_excerpt);
 }
 add_shortcode("nwm_match_excerpt","nwm_match_excerpt_func");
+
+
+add_action('admin_head', 'my_custom_fonts');
+function my_custom_fonts() { ?>
+	<style>
+		#_anwpfl_summary_ifr{
+			height: 300px !important;
+		}
+	</style>
+  <?php
+}
+
+function plugin_mce_css( $mce_css ) {
+  if ( !empty( $mce_css ) )
+    $mce_css .= ',';
+    $mce_css .= get_stylesheet_directory_uri().'/admin_editor.css';
+    return $mce_css;
+  }
+add_filter( 'mce_css', 'plugin_mce_css' );
