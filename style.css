@@ -2365,7 +2365,7 @@ section.entry-hero{
     display: none;
 }
 
-.anwp-fl-calendar-slider__games .match-list__item span.finished{    
+.match-list__item span.finished{    
     text-align: right;
     font-weight: 700;
     font-size: 12px;
@@ -2530,7 +2530,9 @@ border-right: 1px solid #fff;
     font-size: 13px;
 }
 @media (max-width: 767px) {
-    .anwp-fl-calendar-slider__games .anwp-fl-game .match-slim__inner-wrapper{
+    .anwp-fl-calendar-slider__games .anwp-fl-game .match-slim__inner-wrapper,
+    .match-list--shortcode .anwp-fl-game .match-slim__inner-wrapper,
+    .competition__group-wrapper .anwp-fl-game .match-slim__inner-wrapper{
         grid-template-columns:100%;
     }
 }
