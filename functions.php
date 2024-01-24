@@ -1017,3 +1017,10 @@ function plugin_mce_css( $mce_css ) {
     return $mce_css;
   }
 add_filter( 'mce_css', 'plugin_mce_css' );
+
+
+add_filter( 'body_class', function( $classes ) {
+	$prase = parse_url(site_url('/'));
+	$path = str_replace('/','',$prase['path']);
+	return array_merge( $classes, array( 'nwm-'.$path ) );
+});
