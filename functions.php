@@ -1024,3 +1024,67 @@ add_filter( 'body_class', function( $classes ) {
 	$path = str_replace('/','',$prase['path']);
 	return array_merge( $classes, array( 'nwm-'.$path ) );
 });
+
+
+
+
+/*==================================================
+>>>  FIX URL          
+==================================================*/
+// add_action('wp_head','nwm_process_match_title');
+function nwm_process_match_title(){
+	global $wpdb;
+	$table = $wpdb->prefix . 'anwpfl_matches';	
+	
+	$result = $wpdb->get_results("
+		SELECT match_id,kickoff,competition_id FROM $table WHERE `kickoff` > CURDATE()
+	",ARRAY_A);
+	
+	if(!isset($result) || empty($result)){
+		return false;
+	}
+
+	$prase = parse_url(site_url('/'));	
+
+	if($prase['path'] == '/bong-da/'){
+
+		foreach ($result as $k => $v) {
+			if($v['competition_id'] == 23090 || $v['competition_id'] == 23817){
+				continue;
+			}
+			$match = get_post($v['match_id']);
+			//Get date in match URL
+			preg_match('/\d{4}\-\d{2}\-\d{2}/',$match->post_name,$matches);
+			if(isset($matches[0]) && !empty($matches[0])){				
+				$kickoff_VN = convertDateTimeVietNam($v['kickoff']);
+				if($matches[0] != $kickoff_VN){
+					$new_slug= $match->post_title.' '.$kickoff_VN;
+					$new_slug = sanitize_title($new_slug);
+					
+					wp_update_post( array(
+						'ID' => $v['match_id'],
+			            'post_name' => $new_slug
+			        ));
+				}
+				// echo '---------';
+			}
+		}
+		
+	}elseif ($prase['path'] == '/futebol/') {
+		
+	}else{
+		return false;
+	}
+	
+	
+}
+
+function convertDateTimeVietNam($date, $format = 'Y-m-d'){
+    $tz1 = 'UTC';
+    $tz2 = 'Asia/Ho_Chi_Minh'; // UTC +7
+
+    $d = new DateTime($date, new DateTimeZone($tz1));
+    $d->setTimeZone(new DateTimeZone($tz2));
+
+    return $d->format($format);
+}
