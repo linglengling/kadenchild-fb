@@ -2566,6 +2566,33 @@ border-right: 1px solid #fff;
         font-size: 26px;
         line-height: 1.3;
     }
+    body.nwm-news #primary .site-container .entry-content-wrap h2,
+    body.nwm-noticias #primary .site-container .entry-content-wrap h2,
+    body.nwm-tin-tuc #primary .site-container .entry-content-wrap h2{
+        font-size: 22px;
+        line-height: 1.3;
+    }
+    body.nwm-news #primary .site-container .entry-content-wrap h3,
+    body.nwm-noticias #primary .site-container .entry-content-wrap h3,
+    body.nwm-tin-tuc #primary .site-container .entry-content-wrap h3{
+        font-size: 20px;
+        line-height: 1.3;
+    }
+    body.nwm-news #primary .site-container .entry-content-wrap h4,
+    body.nwm-noticias #primary .site-container .entry-content-wrap h4,
+    body.nwm-tin-tuc #primary .site-container .entry-content-wrap h4{
+        font-size: 18px;
+        line-height: 1.3;
+    }
+    body.nwm-news #primary .site-container .entry-content-wrap h5,
+    body.nwm-noticias #primary .site-container .entry-content-wrap h5,
+    body.nwm-tin-tuc #primary .site-container .entry-content-wrap h5,
+    body.nwm-news #primary .site-container .entry-content-wrap h6,
+    body.nwm-noticias #primary .site-container .entry-content-wrap h6,
+    body.nwm-tin-tuc #primary .site-container .entry-content-wrap h6{
+        font-size: 16px;
+        line-height: 1.3;
+    }
     body.nwm-news #primary .site-container .entry-content-wrap p,
     body.nwm-noticias #primary .site-container .entry-content-wrap p,
     body.nwm-tin-tuc #primary .site-container .entry-content-wrap p{
